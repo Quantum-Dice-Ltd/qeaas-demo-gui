@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QRNG Data Visualizer</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>QEaaS Demo GUI</h1>
+        
+        <div class="button-container">
+            <button id="startButton" class="stopped">Start Capture</button>
+            <div class="info-section">
+                <div class="info-icon">ℹ️</div>
+                <div class="info-content">
+                    <h3>Important Notes</h3>
+                    <ul>
+                        <li>Data capture will pause when you switch to a different tab</li>
+                        <li>Data points are limited to the last <span id="maxDataPointsInfo">-</span> values</li>
+                        <li>Connection requires a valid certificate</li>
+                        <li>Update interval: <span id="updateIntervalInfo">-</span>ms</li>
+                        <li>Server: <span id="serverAddressInfo">-</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="status-container">
+            <div id="status" class="status-box">
+                <div class="status-row">
+                    <div class="status-section">
+                        <h3>Current Session</h3>
+                        <table>
+                            <tr><td>Duration:</td><td id="sessionDuration">0s</td></tr>
+                            <tr><td>Data Points:</td><td id="currentDataPoints">0</td></tr>
+                            <tr><td>Total Bytes:</td><td id="currentTotalBytes">0</td></tr>
+                        </table>
+                    </div>
+                    <div class="status-section">
+                        <h3>All Time Stats</h3>
+                        <table>
+                            <tr><td>Total Data Points:</td><td id="allTimeDataPoints">0</td></tr>
+                            <tr><td>Total Bytes:</td><td id="allTimeTotalBytes">0</td></tr>
+                        </table>
+                    </div>
+                    <div class="status-section">
+                        <h3>Current Averages</h3>
+                        <table>
+                            <tr><td>Entropy:</td><td id="avgEntropy">0.00</td></tr>
+                            <tr><td>Raw Bits:</td><td id="avgRawBits">0.00</td></tr>
+                            <tr><td>QRNG Value:</td><td id="avgQrng">0.00</td></tr>
+                        </table>
+                    </div>
+                    <div class="status-section">
+                        <h3>Latest Data</h3>
+                        <div id="latestQrngData">N/A</div>
+                    </div>
+                </div>
+                <div id="errorStatus" class="error-status"></div>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="randomChart"></canvas>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

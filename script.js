@@ -1,19 +1,19 @@
 // Configuration
 const CONFIG = {
-    // serverAddress: 'testjson.qeaas.q-dice.com',
-    serverAddress: '127.0.0.1:8003',
+    serverAddress: 'testjson.qeaas.q-dice.com',
+    // serverAddress: '127.0.0.1:8003',
     endpointPath: '/randcertified?bytes=8',
     maxDataPoints: 200,
     updateInterval: 100, // milliseconds
     fetchOptions: {
         method: 'GET',
-        credentials: 'include',
+        // credentials: 'include',
         headers: {
-            'Content-Type': 'application/json',
+            // 'Content-Type': 'application/json', // Removing this header as it's not needed for GET requests
         },
         // Add these options to handle certificates
-        cache: 'no-store',
-        redirect: 'follow',
+        // cache: 'no-store',
+        // redirect: 'follow',
         // This helps with certificate selection
         referrerPolicy: 'no-referrer'
     },

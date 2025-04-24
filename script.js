@@ -101,7 +101,7 @@ const CONFIG = {
                 grid: {
                     display: false // Remove horizontal grid lines
                 },
-                offset: true,
+                // offset: true,
                 min: 0,
                 max: 255
             }
@@ -244,6 +244,8 @@ class RandomNumberVisualizer {
         this.isCapturing = true;
         this.setButtonState('running');
         SESSION_STATS.currentSession.startTime = new Date();
+        SESSION_STATS.currentSession.dataPoints = 0;
+        SESSION_STATS.currentSession.totalBytes = 0;
         
         while (this.isCapturing && this.isTabVisible) {
             try {
@@ -312,19 +314,20 @@ class RandomNumberVisualizer {
             // Process each byte in the hex string
             const hexBytes = item.data.match(/.{2}/g) || []; // Split into pairs of hex characters
             const byteValues = hexBytes.map(byte => parseInt(byte, 16));
-            const avgByteValue = byteValues.reduce((a, b) => a + b, 0) / byteValues.length;
-            
+            // const item_data_byte = byteValues.reduce((a, b) => a + b, 0) / byteValues.length; // average of all bytes
+            const item_data_byte = byteValues[0]; // first byte
+            // const item_data_byte = byteValues[byteValues.length - 1]; // last byte
             this.dataPoints.push({
                 timestamp: new Date().toLocaleTimeString(),
                 rawBits: item.rawbits,
                 entropy: item.entropy,
-                qrngValue: avgByteValue,
+                qrngValue: item_data_byte,
                 data: item.data
             });
 
             this.entropySum += item.entropy;
             this.rawBitsSum += item.rawbits;
-            this.qrngSum += avgByteValue;
+            this.qrngSum += item_data_byte;
             this.count++;
 
             // Update session stats

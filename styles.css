@@ -120,8 +120,8 @@ td:first-child {
 
 .chart-container {
     width: 100%;
-    height: calc(100vh - 300px);
-    min-height: 400px;
+    height: calc(100vh - 700px);
+    min-height: 300px;
     background-color: white;
     border-radius: 5px;
     padding: 15px;
